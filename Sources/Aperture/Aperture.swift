@@ -40,7 +40,8 @@ public final class Aperture: NSObject {
     highlightClicks: Bool,
     screenId: CGDirectDisplayID = .main,
     audioDevice: AVCaptureDevice? = .default(for: .audio),
-    videoCodec: String? = nil
+    videoCodec: String? = nil,
+    scaleFactor: CGFloat = 1
   ) throws {
     self.destination = destination
     session = AVCaptureSession()
@@ -48,7 +49,7 @@ public final class Aperture: NSObject {
     let input = try AVCaptureScreenInput(displayID: screenId).unwrapOrThrow(ApertureError.invalidScreen)
 
     input.minFrameDuration = CMTime(videoFramesPerSecond: framesPerSecond)
-    input.scaleFactor = 1
+    input.scaleFactor = scaleFactor
     
 
     if let cropRect = cropRect {
