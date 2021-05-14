@@ -48,6 +48,8 @@ public final class Aperture: NSObject {
     let input = try AVCaptureScreenInput(displayID: screenId).unwrapOrThrow(ApertureError.invalidScreen)
 
     input.minFrameDuration = CMTime(videoFramesPerSecond: framesPerSecond)
+    input.scaleFactor = 1
+    
 
     if let cropRect = cropRect {
       input.cropRect = cropRect
